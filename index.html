@@ -5,255 +5,262 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>🎟️ Ticket Station</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 
-  :root {
-    --pink:   #FF6B9D;
-    --teal:   #00C9B1;
-    --yellow: #FFD93D;
-    --purple: #A855F7;
-    --orange: #FF9A3C;
-    --dark:   #1E1B2E;
-    --card:   #2D2A45;
-    --light:  #F0EEFF;
-  }
+  :root {
+    --pink:   #FF6B9D;
+    --teal:   #00C9B1;
+    --yellow: #FFD93D;
+    --purple: #A855F7;
+    --orange: #FF9A3C;
+    --dark:   #1E1B2E;
+    --card:   #2D2A45;
+    --light:  #F0EEFF;
+  }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: var(--dark);
-    font-family: 'Nunito', sans-serif;
-    color: var(--light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 16px 40px;
-  }
+  body {
+    background: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 40px;
+  }
 
-  h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2rem;
-    color: var(--yellow);
-    text-align: center;
-    margin-bottom: 4px;
-  }
-  .subtitle {
-    font-size: 0.95rem;
-    color: #aaa;
-    text-align: center;
-    margin-bottom: 24px;
-  }
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--yellow);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .subtitle { font-size: 0.95rem; color: #aaa; text-align: center; margin-bottom: 24px; }
 
-  label {
-    display: block;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--teal);
-    margin-bottom: 6px;
-  }
-  input[type=text], input[type=url], input[type=number], select {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 12px;
-    border: 2px solid #3D3A58;
-    background: var(--card);
-    color: var(--light);
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 18px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  input:focus, select:focus { border-color: var(--teal); }
-  select option { background: var(--card); }
+  label {
+    display: block; font-weight: 700; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  input[type=text], input[type=number], select {
+    width: 100%; padding: 12px 14px; border-radius: 12px;
+    border: 2px solid #3D3A58; background: var(--card);
+    color: var(--light); font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 600; margin-bottom: 18px;
+    outline: none; transition: border-color 0.2s;
+  }
+  input:focus, select:focus { border-color: var(--teal); }
+  select option { background: var(--card); }
 
-  .btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: transform 0.1s, filter 0.1s;
-  }
-  .btn:active  { transform: scale(0.97); filter: brightness(0.92); }
-  .btn:disabled { opacity: 0.4; cursor: default; }
-  .btn-primary { background: var(--teal);   color: var(--dark); }
-  .btn-yellow  { background: var(--yellow); color: var(--dark); }
-  .btn-pink    { background: var(--pink);   color: #fff; }
-  .btn-orange  { background: var(--orange); color: var(--dark); }
-  .btn-ghost {
-    background: transparent;
-    border: 2px solid #3D3A58;
-    color: #aaa;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem;
-    margin-top: 12px;
-  }
+  .btn {
+    display: block; width: 100%; padding: 14px; border: none;
+    border-radius: 14px; font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem; cursor: pointer;
+    transition: transform 0.1s, filter 0.1s;
+  }
+  .btn:active  { transform: scale(0.97); filter: brightness(0.92); }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+  .btn-primary { background: var(--teal);   color: var(--dark); }
+  .btn-yellow  { background: var(--yellow); color: var(--dark); }
+  .btn-pink    { background: var(--pink);   color: #fff; }
+  .btn-orange  { background: var(--orange); color: var(--dark); }
+  .btn-ghost {
+    background: transparent; border: 2px solid #3D3A58; color: #aaa;
+    font-family: 'Nunito', sans-serif; font-size: 0.9rem; margin-top: 12px;
+  }
 
-  /* ── Setup ── */
-  #setup-screen { width: 100%; max-width: 400px; }
+  /* ── Setup ── */
+  #setup-screen { width: 100%; max-width: 400px; }
 
-  /* ── Tab bar ── */
-  .tab-bar {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-    background: var(--card);
-    border-radius: 14px;
-    padding: 6px;
-    width: 100%;
-    max-width: 400px;
-  }
-  .tab {
-    flex: 1; padding: 8px; border-radius: 10px; border: none;
-    background: transparent; color: #888;
-    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem;
-    cursor: pointer; transition: all 0.15s;
-  }
-  .tab.active { background: var(--dark); color: var(--light); }
+  /* ── Tab bar ── */
+  .tab-bar {
+    display: flex; gap: 8px; margin-bottom: 20px;
+    background: var(--card); border-radius: 14px; padding: 6px;
+    width: 100%; max-width: 400px;
+  }
+  .tab {
+    flex: 1; padding: 8px; border-radius: 10px; border: none;
+    background: transparent; color: #888;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.8rem;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .tab.active { background: var(--dark); color: var(--light); }
 
-  /* ── Station ── */
-  #station-screen { width: 100%; max-width: 400px; display: none; }
+  /* ── Station ── */
+  #station-screen { width: 100%; max-width: 400px; display: none; }
 
-  .station-header {
-    background: var(--card); border-radius: 16px;
-    padding: 14px 18px; margin-bottom: 16px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .station-name { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--yellow); }
-  .script-status {
-    font-size: 0.75rem; font-weight: 700;
-    padding: 4px 10px; border-radius: 20px;
-    background: #3D3A58; color: #aaa;
-  }
-  .script-status.ok  { background: #1a4a3a; color: var(--teal); }
-  .script-status.err { background: #4a1a2a; color: var(--pink); }
+  .station-header {
+    background: var(--card); border-radius: 16px;
+    padding: 14px 18px; margin-bottom: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .station-name { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--yellow); }
+  .script-status {
+    font-size: 0.75rem; font-weight: 700; padding: 4px 10px;
+    border-radius: 20px; background: #3D3A58; color: #aaa;
+  }
+  .script-status.ok  { background: #1a4a3a; color: var(--teal); }
+  .script-status.err { background: #4a1a2a; color: var(--pink); }
 
-  /* ── Scan zone ── */
-  .scan-zone {
-    background: var(--card); border-radius: 20px;
-    padding: 28px 20px; text-align: center;
-    margin-bottom: 16px; border: 2px dashed #3D3A58;
-    transition: border-color 0.3s;
-  }
-  .scan-zone.armed   { border-color: var(--teal); }
-  .scan-zone.running { border-color: var(--orange); }
-  .scan-zone.success { border-color: var(--yellow); }
-  .scan-zone.error   { border-color: var(--pink); }
+  /* ── Card detected banner ── */
+  .card-banner {
+    background: var(--card); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+    border: 2px solid var(--teal);
+  }
+  .card-banner-emoji { font-size: 1.8rem; }
+  .card-banner-name  { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--teal); }
+  .card-banner-id    { font-size: 0.78rem; color: #888; }
 
-  .scan-emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
-  .scan-label { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 4px; }
-  .scan-sub   { font-size: 0.88rem; color: #aaa; min-height: 1.3em; }
+  /* ── Waiting zone (no card) ── */
+  .waiting-zone {
+    background: var(--card); border-radius: 20px;
+    padding: 36px 20px; text-align: center;
+    margin-bottom: 16px; border: 2px dashed #3D3A58;
+  }
+  .waiting-emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
+  .waiting-label { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 4px; }
+  .waiting-sub   { font-size: 0.88rem; color: #aaa; }
 
-  /* ── Timer ── */
-  .timer-display {
-    font-family: 'Fredoka One', cursive;
-    font-size: 3.8rem; color: var(--orange);
-    line-height: 1; margin: 8px 0 4px; letter-spacing: 2px;
-  }
-  .timer-display.urgent { color: var(--pink); }
-  .timer-tier { font-size: 0.85rem; color: #aaa; margin-bottom: 4px; }
+  /* ── Timer ── */
+  .timer-settings {
+    background: #252340; border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .timer-settings label { margin: 0; font-size: 0.78rem; color: #888; white-space: nowrap; }
+  .timer-settings input { width: 70px; padding: 6px 10px; font-size: 0.95rem; margin: 0; text-align: center; }
+  .timer-settings span  { font-size: 0.82rem; color: #888; }
 
-  .timer-settings {
-    background: #252340; border-radius: 12px;
-    padding: 12px 14px; margin-bottom: 14px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .timer-settings label { margin: 0; font-size: 0.78rem; color: #888; white-space: nowrap; }
-  .timer-settings input { width: 70px; padding: 6px 10px; font-size: 0.95rem; margin: 0; text-align: center; }
-  .timer-settings span  { font-size: 0.82rem; color: #888; }
+  .timer-box {
+    background: var(--card); border-radius: 20px;
+    padding: 28px 20px; text-align: center;
+    margin-bottom: 14px; border: 2px solid var(--orange);
+  }
+  .timer-display {
+    font-family: 'Fredoka One', cursive; font-size: 4rem;
+    color: var(--orange); line-height: 1; letter-spacing: 2px;
+  }
+  .timer-display.urgent { color: var(--pink); }
+  .timer-tier  { font-size: 0.85rem; color: #aaa; margin-top: 6px; }
 
-  /* ── Ticket buttons ── */
-  .ticket-section { margin-bottom: 16px; }
-  .ticket-label {
-    font-weight: 700; font-size: 0.82rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--purple); text-align: center; margin-bottom: 10px;
-  }
-  .ticket-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-  .ticket-btn {
-    padding: 13px 0; border-radius: 12px; border: 2px solid transparent;
-    background: var(--card); color: var(--yellow);
-    font-family: 'Fredoka One', cursive; font-size: 1.25rem;
-    cursor: pointer; transition: all 0.15s;
-  }
-  .ticket-btn:hover    { border-color: var(--yellow); }
-  .ticket-btn.selected { background: var(--yellow); color: var(--dark); border-color: var(--yellow); }
+  /* ── Ticket buttons ── */
+  .ticket-section { margin-bottom: 16px; }
+  .ticket-label {
+    font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--purple); text-align: center; margin-bottom: 10px;
+  }
+  .ticket-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .ticket-btn {
+    padding: 13px 0; border-radius: 12px; border: 2px solid transparent;
+    background: var(--card); color: var(--yellow);
+    font-family: 'Fredoka One', cursive; font-size: 1.25rem; cursor: pointer; transition: all 0.15s;
+  }
+  .ticket-btn:hover    { border-color: var(--yellow); }
+  .ticket-btn.selected { background: var(--yellow); color: var(--dark); border-color: var(--yellow); }
 
-  /* ── Free-entry ticket input ── */
-  .free-entry-wrap { margin-bottom: 16px; }
-  .free-entry-wrap label { color: var(--purple); }
-  .free-entry-wrap input {
-    font-size: 1.6rem; text-align: center;
-    font-family: 'Fredoka One', cursive;
-    color: var(--yellow); letter-spacing: 2px;
-    margin-bottom: 10px;
-  }
+  /* ── Free entry ── */
+  .free-entry-wrap { margin-bottom: 16px; }
+  .free-entry-wrap label { color: var(--purple); }
+  .free-entry-wrap input {
+    font-size: 1.6rem; text-align: center;
+    font-family: 'Fredoka One', cursive; color: var(--yellow);
+    letter-spacing: 2px; margin-bottom: 10px;
+  }
 
-  /* ── Flat award (group games) ── */
-  .flat-award {
-    background: var(--card); border-radius: 16px;
-    padding: 20px; text-align: center; margin-bottom: 16px;
-  }
-  .flat-amount      { font-family: 'Fredoka One', cursive; font-size: 2.8rem; color: var(--yellow); margin-bottom: 2px; }
-  .flat-sublabel    { font-size: 0.88rem; color: #aaa; margin-bottom: 12px; }
+  /* ── Flat award ── */
+  .flat-award {
+    background: var(--card); border-radius: 16px;
+    padding: 20px; text-align: center; margin-bottom: 16px;
+  }
+  .flat-amount   { font-family: 'Fredoka One', cursive; font-size: 2.8rem; color: var(--yellow); margin-bottom: 2px; }
+  .flat-sublabel { font-size: 0.88rem; color: #aaa; margin-bottom: 12px; }
 
-  /* ── Log ── */
-  .log-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin-bottom: 8px; }
-  .log-list  { list-style: none; }
-  .log-item  { display: flex; justify-content: space-between; font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid #2D2A45; color: #ccc; }
-  .log-tickets { color: var(--yellow); font-weight: 800; }
+  /* ── Success flash ── */
+  .success-flash {
+    background: #1a4a3a; border: 2px solid var(--teal);
+    border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;
+  }
+  .success-flash .sf-emoji  { font-size: 2.5rem; margin-bottom: 6px; display: block; }
+  .success-flash .sf-label  { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: var(--teal); }
+  .success-flash .sf-sub    { font-size: 0.88rem; color: #aaa; margin-top: 4px; }
 
-  /* ── Prize counter ── */
-  #prize-screen { width: 100%; max-width: 480px; display: none; }
-  .prize-header { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--pink); text-align: center; margin-bottom: 6px; }
-  .prize-sub    { text-align: center; font-size: 0.9rem; color: #aaa; margin-bottom: 20px; }
+  /* ── Register tab ── */
+  .reg-zone {
+    background: var(--card); border-radius: 20px;
+    padding: 28px 20px; text-align: center;
+    margin-bottom: 14px; border: 2px dashed #3D3A58;
+  }
+  .reg-zone.unknown { border-color: var(--purple); border-style: solid; }
+  .reg-zone.found   { border-color: var(--yellow); border-style: solid; }
+  .reg-zone.success { border-color: var(--teal);   border-style: solid; }
+  .reg-zone.error   { border-color: var(--pink);   border-style: solid; }
+  .reg-emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
+  .reg-label { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 4px; }
+  .reg-sub   { font-size: 0.88rem; color: #aaa; }
 
-  .kid-card {
-    background: var(--card); border-radius: 14px;
-    padding: 14px 18px; margin-bottom: 10px;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .kid-rank         { font-family: 'Fredoka One', cursive; font-size: 1rem; color: #555; width: 24px; flex-shrink: 0; text-align: center; }
-  .kid-name         { font-weight: 700; font-size: 1rem; flex: 1; }
-  .kid-tickets      { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--yellow); }
-  .kid-ticket-label { font-size: 0.7rem; color: #888; text-align: right; }
+  /* ── Setup guide ── */
+  .guide-card {
+    background: var(--card); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .guide-step {
+    font-family: 'Fredoka One', cursive; font-size: 1rem;
+    color: var(--yellow); margin-bottom: 6px;
+  }
+  .guide-body { font-size: 0.88rem; color: #ccc; line-height: 1.55; }
+  .guide-code {
+    display: inline-block; background: #1a1830;
+    border-radius: 6px; padding: 2px 8px;
+    font-family: monospace; font-size: 0.85rem;
+    color: var(--teal); word-break: break-all;
+  }
 
-  .spend-row   { display: flex; gap: 8px; margin-top: 8px; }
-  .spend-input {
-    flex: 1; padding: 8px 10px; border-radius: 10px;
-    border: 2px solid #3D3A58; background: var(--dark);
-    color: var(--light); font-family: 'Nunito', sans-serif;
-    font-size: 0.95rem; font-weight: 700; width: 70px; margin-bottom: 0;
-  }
-  .spend-btn {
-    padding: 8px 14px; border-radius: 10px; border: none;
-    background: var(--pink); color: #fff;
-    font-family: 'Fredoka One', cursive; font-size: 1rem; cursor: pointer;
-  }
-  .refresh-btn {
-    display: block; margin: 0 auto 16px; padding: 10px 24px;
-    border-radius: 12px; border: 2px solid var(--teal);
-    background: transparent; color: var(--teal);
-    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
-  }
+  /* ── Log ── */
+  .log-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin-bottom: 8px; }
+  .log-list  { list-style: none; }
+  .log-item  { display: flex; justify-content: space-between; font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid #2D2A45; color: #ccc; }
+  .log-tickets { color: var(--yellow); font-weight: 800; }
 
-  /* ── Register tab ── */
-  #reg-scan-zone { margin-bottom: 14px; }
-  #reg-scan-zone.armed   { border-color: var(--teal); }
-  #reg-scan-zone.found   { border-color: var(--yellow); }
-  #reg-scan-zone.unknown { border-color: var(--purple); }
-  #reg-scan-zone.success { border-color: var(--teal); }
-  #reg-scan-zone.error   { border-color: var(--pink); }
+  /* ── Prize counter ── */
+  #prize-screen { width: 100%; max-width: 480px; display: none; }
+  .prize-header { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--pink); text-align: center; margin-bottom: 6px; }
+  .prize-sub    { text-align: center; font-size: 0.9rem; color: #aaa; margin-bottom: 20px; }
 
-  .hidden { display: none !important; }
+  .kid-card {
+    background: var(--card); border-radius: 14px;
+    padding: 14px 18px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .kid-rank         { font-family: 'Fredoka One', cursive; font-size: 1rem; color: #555; width: 24px; flex-shrink: 0; text-align: center; }
+  .kid-name         { font-weight: 700; font-size: 1rem; flex: 1; }
+  .kid-tickets      { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--yellow); }
+  .kid-ticket-label { font-size: 0.7rem; color: #888; text-align: right; }
+
+  .spend-row   { display: flex; gap: 8px; margin-top: 8px; }
+  .spend-input {
+    flex: 1; padding: 8px 10px; border-radius: 10px;
+    border: 2px solid #3D3A58; background: var(--dark);
+    color: var(--light); font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem; font-weight: 700; width: 70px; margin-bottom: 0;
+  }
+  .spend-btn {
+    padding: 8px 14px; border-radius: 10px; border: none;
+    background: var(--pink); color: #fff;
+    font-family: 'Fredoka One', cursive; font-size: 1rem; cursor: pointer;
+  }
+  .refresh-btn {
+    display: block; margin: 0 auto 16px; padding: 10px 24px;
+    border-radius: 12px; border: 2px solid var(--teal);
+    background: transparent; color: var(--teal);
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+  }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -262,789 +269,707 @@
 <p class="subtitle">Animal Party Arcade</p>
 
 <!-- ══════════════════════════════════
-     SETUP SCREEN
+     SETUP SCREEN
 ══════════════════════════════════ -->
 <div id="setup-screen">
-  <label for="station-select">This Station's Game</label>
-  <select id="station-select">
-    <option value="">— choose a game —</option>
-    <optgroup label="🌿 Outdoor">
-      <option value="elephant">🐘 Elephant Target Practice</option>
-      <option value="penguin">🐧 Penguin Waddle</option>
-      <option value="pollinator">🌸 Pollinator Flower Picker</option>
-      <option value="flamingo">🦩 Flamingo Hop</option>
-    </optgroup>
-    <optgroup label="🏠 Indoor">
-      <option value="turtle">🐢 Sea Turtle Egg Dig</option>
-      <option value="snake">🐍 Snake Ladder Toss</option>
-      <option value="axolotl">🦎 Feed the Axolotl</option>
-      <option value="kitten">🐱 Kitten Rescue Crane</option>
-    </optgroup>
-    <optgroup label="👥 Group">
-      <option value="freeze">🐆 Wildcat Prowl Freeze Dance</option>
-      <option value="howl">🐶 Puppy Howl Contest</option>
-    </optgroup>
-  </select>
+  <label for="station-select">This Station's Game</label>
+  <select id="station-select">
+    <option value="">— choose a game —</option>
+    <optgroup label="🌿 Outdoor">
+      <option value="elephant">🐘 Elephant Target Practice</option>
+      <option value="penguin">🐧 Penguin Waddle</option>
+      <option value="pollinator">🌸 Pollinator Flower Picker</option>
+      <option value="flamingo">🦩 Flamingo Hop</option>
+    </optgroup>
+    <optgroup label="🏠 Indoor">
+      <option value="turtle">🐢 Sea Turtle Egg Dig</option>
+      <option value="snake">🐍 Snake Ladder Toss</option>
+      <option value="axolotl">🦎 Feed the Axolotl</option>
+      <option value="kitten">🐱 Kitten Rescue Crane</option>
+    </optgroup>
+    <optgroup label="👥 Group">
+      <option value="freeze">🐆 Wildcat Prowl Freeze Dance</option>
+      <option value="howl">🐶 Puppy Howl Contest</option>
+    </optgroup>
+  </select>
 
-  <button class="btn btn-primary" onclick="startStation()">Open Station</button>
-  <button class="btn btn-ghost"   onclick="openPrizeCounter()">Open as Prize Counter</button>
+  <button class="btn btn-primary" onclick="startStation()">Open Station</button>
+  <button class="btn btn-ghost"   onclick="openPrizeCounter()">Open as Prize Counter</button>
 </div>
 
 <!-- ══════════════════════════════════
-     STATION SCREEN
+     STATION SCREEN
 ══════════════════════════════════ -->
 <div id="station-screen">
-  <div class="tab-bar">
-    <button class="tab active" id="tab-btn-scan" onclick="switchTab('scan')">🎮 Scan</button>
-    <button class="tab"        id="tab-btn-reg"  onclick="switchTab('reg')">➕ Register</button>
-    <button class="tab"        id="tab-btn-log"  onclick="switchTab('log')">📋 Log</button>
-    <button class="tab"                           onclick="goSetup()">⚙️ Setup</button>
-  </div>
+  <div class="tab-bar">
+    <button class="tab active" id="tab-btn-scan" onclick="switchTab('scan')">🎮 Play</button>
+    <button class="tab"        id="tab-btn-reg"  onclick="switchTab('reg')">➕ Register</button>
+    <button class="tab"        id="tab-btn-log"  onclick="switchTab('log')">📋 Log</button>
+    <button class="tab"                           onclick="goSetup()">⚙️ Setup</button>
+  </div>
 
-  <!-- SCAN TAB -->
-  <div id="tab-scan">
-    <div class="station-header">
-      <span class="station-name" id="display-station-name">Game</span>
-      <span class="script-status" id="script-status-badge">checking…</span>
-    </div>
+  <!-- ── PLAY TAB ── -->
+  <div id="tab-scan">
+    <div class="station-header">
+      <span class="station-name" id="display-station-name">Game</span>
+      <span class="script-status" id="script-status-badge">checking…</span>
+    </div>
 
-    <div class="timer-settings hidden" id="timer-settings-row">
-      <label>Duration</label>
-      <input type="number" id="timer-override" min="5" step="5" />
-      <span>sec</span>
-    </div>
+    <!-- Card detected banner (hidden until card arrives) -->
+    <div class="card-banner hidden" id="card-banner">
+      <span class="card-banner-emoji">🎴</span>
+      <div>
+        <div class="card-banner-name" id="card-banner-name">—</div>
+        <div class="card-banner-id"   id="card-banner-id"></div>
+      </div>
+    </div>
 
-    <div class="scan-zone" id="scan-zone">
-      <span class="scan-emoji" id="scan-emoji">🎴</span>
-      <div class="scan-label"   id="scan-label">Ready</div>
-      <div class="timer-display hidden" id="timer-display">0:00</div>
-      <div class="timer-tier   hidden" id="timer-tier"></div>
-      <div class="scan-sub"    id="scan-sub">Tap Scan Card to begin</div>
-    </div>
+    <!-- Waiting state (no card yet) -->
+    <div class="waiting-zone" id="waiting-zone">
+      <span class="waiting-emoji">🃏</span>
+      <div class="waiting-label">Waiting for card tap…</div>
+      <div class="waiting-sub">Player taps NFC card to the back of any station phone</div>
+    </div>
 
-    <button class="btn btn-yellow" id="primary-btn" onclick="primaryAction()">📲 Scan Card</button>
-    <button class="btn btn-pink hidden" id="stop-btn" onclick="stopCountUp()" style="margin-top:10px;">⏹ Stop Timer</button>
+    <!-- Timer override -->
+    <div class="timer-settings hidden" id="timer-settings-row">
+      <label>Duration</label>
+      <input type="number" id="timer-override" min="5" step="5" />
+      <span>sec</span>
+    </div>
 
-    <!-- Ticket buttons (most games) -->
-    <div id="ticket-section" class="ticket-section hidden">
-      <div class="ticket-label" id="ticket-label-text">Tickets to award</div>
-      <div class="ticket-grid"  id="ticket-grid"></div>
-      <button class="btn btn-primary" style="margin-top:12px;" onclick="confirmTickets()">✅ Award Tickets</button>
-    </div>
+    <!-- Timer box -->
+    <div class="timer-box hidden" id="timer-box">
+      <div class="timer-display" id="timer-display">0:00</div>
+      <div class="timer-tier"    id="timer-tier"></div>
+    </div>
 
-    <!-- Free-entry ticket input (Sea Turtle Egg Dig) -->
-    <div id="free-entry-section" class="free-entry-wrap hidden">
-      <label>Tickets to award</label>
-      <input type="number" id="free-entry-input" min="0" placeholder="0" />
-      <button class="btn btn-primary" onclick="confirmFreeEntry()">✅ Award Tickets</button>
-    </div>
+    <!-- Start / Stop buttons -->
+    <button class="btn btn-yellow hidden" id="start-timer-btn" onclick="startTimer()" style="margin-bottom:10px;">
+      ▶ Start Timer
+    </button>
+    <button class="btn btn-pink hidden" id="stop-timer-btn" onclick="stopTimer()" style="margin-bottom:10px;">
+      ⏹ Stop Timer
+    </button>
 
-    <!-- Flat-award panel (group games) -->
-    <div id="flat-section" class="hidden"></div>
-  </div>
+    <!-- Ticket award UI -->
+    <div id="ticket-section" class="ticket-section hidden">
+      <div class="ticket-label">Tickets to award</div>
+      <div class="ticket-grid" id="ticket-grid"></div>
+      <button class="btn btn-primary" style="margin-top:12px;" onclick="confirmTickets()">✅ Award Tickets</button>
+    </div>
 
-  <!-- REGISTER TAB -->
-  <div id="tab-reg" class="hidden">
-    <div class="scan-zone" id="reg-scan-zone">
-      <span class="scan-emoji" id="reg-emoji">🎴</span>
-      <div class="scan-label" id="reg-label">Ready to register</div>
-      <div class="scan-sub"   id="reg-sub">Tap the button below and hold a card to the phone</div>
-    </div>
+    <!-- Free entry (Sea Turtle) -->
+    <div id="free-entry-section" class="free-entry-wrap hidden">
+      <label>Tickets to award</label>
+      <input type="number" id="free-entry-input" min="0" placeholder="0" />
+      <button class="btn btn-primary" onclick="confirmFreeEntry()">✅ Award Tickets</button>
+    </div>
 
-    <button class="btn btn-yellow" id="reg-scan-btn" onclick="startRegScan()" style="margin-bottom:12px;">
-      📲 Scan Card to Register
-    </button>
+    <!-- Flat award (group games) -->
+    <div id="flat-section" class="hidden"></div>
 
-    <!-- shown after scan if card is unregistered -->
-    <div id="reg-name-section" class="hidden">
-      <label for="reg-name-input">Child's name</label>
-      <input type="text" id="reg-name-input" placeholder="e.g. Emma" autocomplete="off" />
-      <button class="btn btn-primary" onclick="confirmRegister()">✅ Register Card</button>
-      <button class="btn btn-ghost"   onclick="resetRegPanel()">✕ Cancel</button>
-    </div>
-  </div>
+    <!-- Success flash -->
+    <div id="success-flash" class="success-flash hidden">
+      <span class="sf-emoji">🎉</span>
+      <div class="sf-label" id="sf-label">Tickets awarded!</div>
+      <div class="sf-sub"   id="sf-sub"></div>
+    </div>
 
-  <!-- LOG TAB -->
-  <div id="tab-log" class="hidden">
-    <p class="log-title">Recent scans at this station</p>
-    <ul class="log-list" id="log-list">
-      <li class="log-item" style="color:#555;">No scans yet.</li>
-    </ul>
-  </div>
+    <!-- Reset button (shown after award) -->
+    <button class="btn btn-ghost hidden" id="reset-btn" onclick="resetPlayTab()" style="margin-top:8px;">
+      ↩ Ready for next player
+    </button>
+  </div>
+
+  <!-- ── REGISTER TAB ── -->
+  <div id="tab-reg" class="hidden">
+
+    <!-- Guide: how to write a card -->
+    <div class="guide-card">
+      <div class="guide-step">How to set up each NFC card</div>
+      <div class="guide-body">
+        In <strong>NFC Tools</strong>, tap <strong>Write → Add a record → URL</strong> and enter:<br/><br/>
+        <span class="guide-code" id="guide-url-example">Loading…</span><br/><br/>
+        Replace <em>firstname</em> with the child's name in lowercase (no spaces). Tap <strong>Write</strong> and hold the card to the phone. Repeat for each child.
+      </div>
+    </div>
+
+    <!-- Manual registration form -->
+    <div class="guide-card">
+      <div class="guide-step">Or register a card here</div>
+      <div class="guide-body" style="margin-bottom:12px;">
+        Enter the child's name below, then tap Register. This adds them to the Google Sheet at 0 tickets. Use the same name (lowercase) when writing the card URL in NFC Tools.
+      </div>
+      <div class="reg-zone" id="reg-zone">
+        <span class="reg-emoji" id="reg-emoji">✏️</span>
+        <div class="reg-label" id="reg-label">Enter a name below</div>
+        <div class="reg-sub"   id="reg-sub">The card ID will match the name you type</div>
+      </div>
+      <label for="reg-name-input">Child's first name</label>
+      <input type="text" id="reg-name-input" placeholder="e.g. emma" autocomplete="off"
+             oninput="this.value = this.value.toLowerCase().replace(/[^a-z]/g,'')" />
+      <button class="btn btn-primary" onclick="confirmRegister()">✅ Register</button>
+    </div>
+  </div>
+
+  <!-- ── LOG TAB ── -->
+  <div id="tab-log" class="hidden">
+    <p class="log-title">Recent awards at this station</p>
+    <ul class="log-list" id="log-list">
+      <li class="log-item" style="color:#555;">No awards yet.</li>
+    </ul>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════
-     PRIZE COUNTER SCREEN
+     PRIZE COUNTER SCREEN
 ══════════════════════════════════ -->
 <div id="prize-screen">
-  <div class="tab-bar" style="max-width:480px;">
-    <button class="tab active" onclick="switchPrizeTab('totals')">🏆 Totals</button>
-    <button class="tab"        onclick="switchPrizeTab('spend')">🎁 Spend</button>
-    <button class="tab"        onclick="goSetup()">⚙️ Setup</button>
-  </div>
-  <div id="prize-tab-totals">
-    <div class="prize-header">🎟️ Ticket Totals</div>
-    <p class="prize-sub" id="last-refresh-label">—</p>
-    <button class="refresh-btn" onclick="loadTotals()">↻ Refresh</button>
-    <div id="kids-list"><div style="text-align:center;color:#555;padding:20px;">Loading…</div></div>
-  </div>
-  <div id="prize-tab-spend" class="hidden">
-    <div class="prize-header">🎁 Spend Tickets</div>
-    <p class="prize-sub">Deduct tickets when a child picks a prize.</p>
-    <button class="refresh-btn" onclick="loadTotals()">↻ Refresh</button>
-    <div id="spend-list"><div style="text-align:center;color:#555;padding:20px;">Loading…</div></div>
-  </div>
+  <div class="tab-bar" style="max-width:480px;">
+    <button class="tab active" onclick="switchPrizeTab('totals')">🏆 Totals</button>
+    <button class="tab"        onclick="switchPrizeTab('spend')">🎁 Spend</button>
+    <button class="tab"        onclick="goSetup()">⚙️ Setup</button>
+  </div>
+  <div id="prize-tab-totals">
+    <div class="prize-header">🎟️ Ticket Totals</div>
+    <p class="prize-sub" id="last-refresh-label">—</p>
+    <button class="refresh-btn" onclick="loadTotals()">↻ Refresh</button>
+    <div id="kids-list"><div style="text-align:center;color:#555;padding:20px;">Loading…</div></div>
+  </div>
+  <div id="prize-tab-spend" class="hidden">
+    <div class="prize-header">🎁 Spend Tickets</div>
+    <p class="prize-sub">Deduct tickets when a child picks a prize.</p>
+    <button class="refresh-btn" onclick="loadTotals()">↻ Refresh</button>
+    <div id="spend-list"><div style="text-align:center;color:#555;padding:20px;">Loading…</div></div>
+  </div>
 </div>
 
 <script>
 // ─────────────────────────────────────────
-// HARDCODED SCRIPT URL
+// CONFIG — update SCRIPT_URL if redeployed
 // ─────────────────────────────────────────
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjOCUPXIC4UwG9cRhn7tqK8P69prukCQXqfIItU7-aRog97wjnnXTqz8BCq91up4dX/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYVmRx2Hb_tLDlWAW-GwPabrMzyowos1VSiunSn9T7jabj0Iy-Zlt5osYhqVfwjjsG/exec';
 
 // ─────────────────────────────────────────
 // GAME CONFIG
 // ─────────────────────────────────────────
 const GAMES = {
-  elephant: {
-    label: '🐘 Elephant Target Practice',
-    timerType: 'countup', defaultSecs: 60,
-    countupTiers: [
-      { maxSecs: 20, tickets: 5, label: 'Under 20s — 5 🎟️' },
-      { maxSecs: 40, tickets: 3, label: '20–40s — 3 🎟️' },
-      { maxSecs: 60, tickets: 1, label: '40–60s — 1 🎟️' },
-    ],
-    ticketOptions: [1, 2, 3, 4, 5],
-  },
-  penguin: {
-    label: '🐧 Penguin Waddle',
-    timerType: 'countup', defaultSecs: 60,
-    countupTiers: [
-      { maxSecs: 20, tickets: 5, label: 'Under 20s — 5 🎟️' },
-      { maxSecs: 40, tickets: 3, label: '20–40s — 3 🎟️' },
-      { maxSecs: 60, tickets: 1, label: '40–60s — 1 🎟️' },
-    ],
-    ticketOptions: [1, 2, 3, 4, 5],
-  },
-  pollinator: {
-    label: '🌸 Pollinator Flower Picker',
-    timerType: 'none',
-    ticketOptions: [1, 2, 3, 5, 10],
-  },
-  flamingo: {
-    label: '🦩 Flamingo Hop',
-    timerType: 'none',
-    ticketOptions: [1, 2, 3, 5, 10],
-  },
-  turtle: {
-    label: '🐢 Sea Turtle Egg Dig',
-    timerType: 'countdown', defaultSecs: 120,
-    freeEntry: true,   // show number input instead of ticket buttons
-  },
-  snake: {
-    label: '🐍 Snake Ladder Toss',
-    timerType: 'none',
-    ticketOptions: [1, 2, 3, 5, 10],
-  },
-  axolotl: {
-    label: '🦎 Feed the Axolotl',
-    timerType: 'none',
-    ticketOptions: [1, 2, 3, 5, 10],
-  },
-  kitten: {
-    label: '🐱 Kitten Rescue Crane',
-    timerType: 'countdown', defaultSecs: 120,
-    ticketOptions: [1, 2, 3, 5, 10],
-  },
-  freeze: {
-    label: '🐆 Wildcat Prowl Freeze Dance',
-    timerType: 'none',
-    flatTickets: 1, flatLabel: 'Each participant gets',
-  },
-  howl: {
-    label: '🐶 Puppy Howl Contest',
-    timerType: 'none',
-    flatTickets: 2, flatLabel: 'Each participant gets',
-    winnerBonus: true, winnerBonusTickets: 3,
-  },
+  elephant: {
+    label: '🐘 Elephant Target Practice',
+    timerType: 'countup', defaultSecs: 60,
+    countupTiers: [
+      { maxSecs: 20, tickets: 5, label: 'Under 20s — 5 🎟️' },
+      { maxSecs: 40, tickets: 3, label: '20–40s — 3 🎟️' },
+      { maxSecs: 60, tickets: 1, label: '40–60s — 1 🎟️' },
+    ],
+    ticketOptions: [1, 2, 3, 4, 5],
+  },
+  penguin: {
+    label: '🐧 Penguin Waddle',
+    timerType: 'countup', defaultSecs: 60,
+    countupTiers: [
+      { maxSecs: 20, tickets: 5, label: 'Under 20s — 5 🎟️' },
+      { maxSecs: 40, tickets: 3, label: '20–40s — 3 🎟️' },
+      { maxSecs: 60, tickets: 1, label: '40–60s — 1 🎟️' },
+    ],
+    ticketOptions: [1, 2, 3, 4, 5],
+  },
+  pollinator: { label: '🌸 Pollinator Flower Picker', timerType: 'none', ticketOptions: [1,2,3,5,10] },
+  flamingo:   { label: '🦩 Flamingo Hop',             timerType: 'none', ticketOptions: [1,2,3,5,10] },
+  turtle: {
+    label: '🐢 Sea Turtle Egg Dig',
+    timerType: 'countdown', defaultSecs: 120, freeEntry: true,
+  },
+  snake:   { label: '🐍 Snake Ladder Toss',   timerType: 'none', ticketOptions: [1,2,3,5,10] },
+  axolotl: { label: '🦎 Feed the Axolotl',    timerType: 'none', ticketOptions: [1,2,3,5,10] },
+  kitten:  { label: '🐱 Kitten Rescue Crane', timerType: 'countdown', defaultSecs: 120, ticketOptions: [1,2,3,5,10] },
+  freeze:  { label: '🐆 Wildcat Prowl Freeze Dance', timerType: 'none', flatTickets: 1,  flatLabel: 'Each participant gets' },
+  howl:    { label: '🐶 Puppy Howl Contest',         timerType: 'none', flatTickets: 2,  flatLabel: 'Each participant gets', winnerBonus: true, winnerBonusTickets: 3 },
 };
 
 // ─────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────
-let STATION_KEY   = '';
-let game          = null;
+let game            = null;
 let selectedTickets = 3;
-let scanLog       = [];
-let timerInterval = null;
-let timerSeconds  = 0;
-let pendingCardId = null;
+let scanLog         = [];
+let timerInterval   = null;
+let timerSeconds    = 0;
+let activeCardId    = null;   // card ID from URL param
+let activeCardName  = null;
+
+// ─────────────────────────────────────────
+// ON LOAD — check for ?card= in URL
+// ─────────────────────────────────────────
+window.addEventListener('load', () => {
+  const params = new URLSearchParams(window.location.search);
+  const card   = params.get('card');
+  const name   = params.get('name');
+
+  if (card) {
+    // A card was tapped — store it and clean URL
+    sessionStorage.setItem('pendingCard', card);
+    sessionStorage.setItem('pendingName', name || card);
+    // Remove query string without reloading
+    history.replaceState({}, '', window.location.pathname);
+  }
+});
 
 // ─────────────────────────────────────────
 // SETUP
 // ─────────────────────────────────────────
 function startStation() {
-  const key = document.getElementById('station-select').value;
-  if (!key) { alert('Please select a game.'); return; }
-  STATION_KEY = key;
-  game = GAMES[key];
-  document.getElementById('setup-screen').style.display  = 'none';
-  document.getElementById('station-screen').style.display = 'block';
-  document.getElementById('display-station-name').textContent = game.label;
-  initStationUI();
-  pingScript();
+  const key = document.getElementById('station-select').value;
+  if (!key) { alert('Please select a game.'); return; }
+  game = GAMES[key];
+  document.getElementById('setup-screen').style.display   = 'none';
+  document.getElementById('station-screen').style.display = 'block';
+  document.getElementById('display-station-name').textContent = game.label;
+
+  // Build static URL example for Register tab
+  document.getElementById('guide-url-example').textContent =
+    SCRIPT_URL + '?action=checkin&cardId=firstname';
+
+  initPlayTab();
+  pingScript();
+
+  // Check if a card was tapped before station was selected
+  checkPendingCard();
 }
 
 function openPrizeCounter() {
-  document.getElementById('setup-screen').style.display = 'none';
-  document.getElementById('prize-screen').style.display = 'block';
-  loadTotals();
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('prize-screen').style.display = 'block';
+  loadTotals();
 }
 
 function goSetup() {
-  clearTimerInterval();
-  document.getElementById('station-screen').style.display = 'none';
-  document.getElementById('prize-screen').style.display  = 'none';
-  document.getElementById('setup-screen').style.display  = 'block';
+  clearTimerInterval();
+  document.getElementById('station-screen').style.display = 'none';
+  document.getElementById('prize-screen').style.display   = 'none';
+  document.getElementById('setup-screen').style.display   = 'block';
 }
 
 // ─────────────────────────────────────────
-// INIT STATION UI
+// CARD DETECTION (URL param)
 // ─────────────────────────────────────────
-function initStationUI() {
-  document.getElementById('ticket-section').classList.add('hidden');
-  document.getElementById('free-entry-section').classList.add('hidden');
-  document.getElementById('flat-section').classList.add('hidden');
-  document.getElementById('stop-btn').classList.add('hidden');
-  document.getElementById('timer-display').classList.add('hidden');
-  document.getElementById('timer-tier').classList.add('hidden');
+function checkPendingCard() {
+  const card = sessionStorage.getItem('pendingCard');
+  const name = sessionStorage.getItem('pendingName');
+  if (card) {
+    sessionStorage.removeItem('pendingCard');
+    sessionStorage.removeItem('pendingName');
+    cardDetected(card, name);
+  }
+}
 
-  const settingsRow = document.getElementById('timer-settings-row');
-  const primaryBtn  = document.getElementById('primary-btn');
+// Poll every 500ms for a new card tap while station is open
+// (handles the case where a card is tapped while already on station screen)
+setInterval(() => {
+  if (document.getElementById('station-screen').style.display !== 'block') return;
+  const card = sessionStorage.getItem('pendingCard');
+  const name = sessionStorage.getItem('pendingName');
+  if (card) {
+    sessionStorage.removeItem('pendingCard');
+    sessionStorage.removeItem('pendingName');
+    cardDetected(card, name);
+  }
+}, 500);
 
-  if (game.timerType !== 'none') {
-    settingsRow.classList.remove('hidden');
-    document.getElementById('timer-override').value = game.defaultSecs;
-  } else {
-    settingsRow.classList.add('hidden');
-  }
+function cardDetected(cardId, cardName) {
+  activeCardId   = cardId;
+  activeCardName = cardName || cardId;
 
-  if (game.flatTickets !== undefined) {
-    primaryBtn.textContent = '📲 Scan Card';
-    buildFlatPanel();
-    document.getElementById('flat-section').classList.remove('hidden');
-  } else {
-    if (!game.freeEntry) buildTicketGrid();
-    primaryBtn.textContent = game.timerType === 'none'
-      ? '📲 Scan Card'
-      : '📲 Scan Card to Start Timer';
-  }
+  // Show banner, hide waiting zone
+  document.getElementById('waiting-zone').classList.add('hidden');
+  document.getElementById('card-banner').classList.remove('hidden');
+  document.getElementById('card-banner-name').textContent = activeCardName;
+  document.getElementById('card-banner-id').textContent   = 'ID: ' + cardId;
 
-  setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin');
-  selectedTickets = game.ticketOptions ? game.ticketOptions[2] : 3;
-  highlightSelectedTicket();
+  // Make sure we're on play tab
+  switchTab('scan');
+
+  if (game.flatTickets !== undefined) {
+    // Group game — award immediately
+    buildFlatPanel();
+    document.getElementById('flat-section').classList.remove('hidden');
+  } else if (game.timerType === 'none') {
+    showAwardUI();
+  } else {
+    // Timed game — show Start Timer button
+    document.getElementById('start-timer-btn').classList.remove('hidden');
+  }
 }
 
 // ─────────────────────────────────────────
-// PRIMARY ACTION
+// INIT PLAY TAB
 // ─────────────────────────────────────────
-function primaryAction() { startScan(); }
-
-// ─────────────────────────────────────────
-// NFC SCAN
-// ─────────────────────────────────────────
-async function startScan() {
-  if (!('NDEFReader' in window)) {
-    setScanState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen (not a browser tab).');
-    return;
-  }
-
-  setScanState('armed', '📲', 'Hold card to phone…', 'Top edge of phone, near the camera');
-  document.getElementById('primary-btn').disabled = true;
-
-  try {
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    ndef.onreadingerror = () => {
-      setScanState('error', '❌', 'Read error', 'Try again');
-      document.getElementById('primary-btn').disabled = false;
-    };
-    ndef.onreading = (event) => {
-      const cardId = event.serialNumber || 'unknown-' + Date.now();
-      ndef.onreading = null;
-      handleCardScanned(cardId);
-    };
-  } catch (err) {
-    setScanState('error', '❌', 'NFC Error', err.message || 'Could not start NFC.');
-    document.getElementById('primary-btn').disabled = false;
-  }
+function initPlayTab() {
+  if (game.timerType !== 'none') {
+    document.getElementById('timer-settings-row').classList.remove('hidden');
+    document.getElementById('timer-override').value = game.defaultSecs;
+  }
+  if (!game.freeEntry && game.ticketOptions) buildTicketGrid();
+  selectedTickets = game.ticketOptions ? game.ticketOptions[2] : 3;
 }
 
-function handleCardScanned(cardId) {
-  pendingCardId = cardId;
-  document.getElementById('primary-btn').disabled = false;
+function resetPlayTab() {
+  activeCardId = null; activeCardName = null;
+  clearTimerInterval();
 
-  if (game.flatTickets !== undefined) {
-    awardFlatTickets(cardId, game.flatTickets, false);
-    return;
-  }
-  if (game.timerType === 'none') {
-    setScanState('success', '✅', 'Card scanned!', 'Choose tickets and tap Award');
-    showAwardUI();
-    return;
-  }
-  if (game.timerType === 'countdown') { startCountdown(); return; }
-  if (game.timerType === 'countup')   { startCountUp();   return; }
+  // Hide everything dynamic
+  ['card-banner','timer-box','start-timer-btn','stop-timer-btn',
+   'ticket-section','free-entry-section','flat-section','success-flash','reset-btn']
+    .forEach(id => document.getElementById(id).classList.add('hidden'));
+
+  // Reset timer display
+  document.getElementById('timer-display').textContent = formatTime(0);
+  document.getElementById('timer-display').classList.remove('urgent');
+  document.getElementById('timer-tier').textContent = '';
+  if (document.getElementById('free-entry-input'))
+    document.getElementById('free-entry-input').value = '';
+
+  // Show waiting zone
+  document.getElementById('waiting-zone').classList.remove('hidden');
 }
 
 // ─────────────────────────────────────────
-// COUNTDOWN
+// TIMER
 // ─────────────────────────────────────────
+function startTimer() {
+  document.getElementById('start-timer-btn').classList.add('hidden');
+  document.getElementById('timer-box').classList.remove('hidden');
+
+  if (game.timerType === 'countdown') startCountdown();
+  if (game.timerType === 'countup')   startCountUp();
+}
+
+function stopTimer() {
+  clearTimerInterval();
+  document.getElementById('stop-timer-btn').classList.add('hidden');
+  if (game.timerType === 'countdown') onCountdownComplete();
+  if (game.timerType === 'countup')   onCountUpStopped();
+}
+
 function startCountdown() {
-  const override = parseInt(document.getElementById('timer-override').value);
-  timerSeconds = override > 0 ? override : game.defaultSecs;
-  document.getElementById('timer-display').classList.remove('hidden');
-  document.getElementById('stop-btn').classList.remove('hidden');
-  document.getElementById('primary-btn').disabled = true;
-  setScanState('running', '⏳', 'Time remaining', '');
-  updateTimerDisplay();
-  timerInterval = setInterval(() => {
-    timerSeconds--;
-    updateTimerDisplay();
-    if (timerSeconds <= 0) { clearTimerInterval(); onCountdownComplete(); }
-  }, 1000);
+  const override = parseInt(document.getElementById('timer-override').value);
+  timerSeconds = override > 0 ? override : game.defaultSecs;
+  document.getElementById('stop-timer-btn').classList.remove('hidden');
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    updateTimerDisplay();
+    if (timerSeconds <= 0) { clearTimerInterval(); onCountdownComplete(); }
+  }, 1000);
 }
 
 function onCountdownComplete() {
-  document.getElementById('stop-btn').classList.add('hidden');
-  setScanState('success', '🎉', "Time's up!", 'Enter or choose tickets and tap Award');
-  document.getElementById('timer-display').classList.add('hidden');
-  document.getElementById('primary-btn').disabled = false;
-  showAwardUI();
+  document.getElementById('stop-timer-btn').classList.add('hidden');
+  showAwardUI();
 }
 
-// Allow attendant to stop countdown early
-function stopCountdown() { clearTimerInterval(); onCountdownComplete(); }
-
-// ─────────────────────────────────────────
-// COUNT-UP
-// ─────────────────────────────────────────
 function startCountUp() {
-  timerSeconds = 0;
-  document.getElementById('timer-display').classList.remove('hidden');
-  document.getElementById('timer-tier').classList.remove('hidden');
-  document.getElementById('stop-btn').classList.remove('hidden');
-  document.getElementById('primary-btn').disabled = true;
-  setScanState('running', '🏃', 'Go!', '');
-  updateTimerDisplay();
-  updateCountupTier();
-  const maxSecs = parseInt(document.getElementById('timer-override').value) || game.defaultSecs;
-  timerInterval = setInterval(() => {
-    timerSeconds++;
-    updateTimerDisplay();
-    updateCountupTier();
-    if (timerSeconds >= maxSecs) { clearTimerInterval(); onCountUpStopped(); }
-  }, 1000);
+  timerSeconds = 0;
+  document.getElementById('stop-timer-btn').classList.remove('hidden');
+  updateTimerDisplay();
+  updateCountupTier();
+  const maxSecs = parseInt(document.getElementById('timer-override').value) || game.defaultSecs;
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    updateTimerDisplay();
+    updateCountupTier();
+    if (timerSeconds >= maxSecs) { clearTimerInterval(); onCountUpStopped(); }
+  }, 1000);
 }
-
-function stopCountUp() { clearTimerInterval(); onCountUpStopped(); }
 
 function onCountUpStopped() {
-  document.getElementById('stop-btn').classList.add('hidden');
-  document.getElementById('primary-btn').disabled = false;
-  const tier = getCountupTier(timerSeconds);
-  if (tier) {
-    selectedTickets = tier.tickets;
-    highlightSelectedTicket();
-    setScanState('success', '✅', tier.label, 'Confirm or adjust tickets below');
-  } else {
-    setScanState('success', '✅', formatTime(timerSeconds), 'Choose tickets and tap Award');
-  }
-  showAwardUI();
+  document.getElementById('stop-timer-btn').classList.add('hidden');
+  const tier = getCountupTier(timerSeconds);
+  if (tier) { selectedTickets = tier.tickets; highlightSelectedTicket(); }
+  showAwardUI();
 }
 
 function getCountupTier(secs) {
-  if (!game.countupTiers) return null;
-  for (const t of game.countupTiers) { if (secs <= t.maxSecs) return t; }
-  return game.countupTiers[game.countupTiers.length - 1];
+  if (!game.countupTiers) return null;
+  for (const t of game.countupTiers) { if (secs <= t.maxSecs) return t; }
+  return game.countupTiers[game.countupTiers.length - 1];
 }
 
 function updateCountupTier() {
-  const tier = getCountupTier(timerSeconds);
-  document.getElementById('timer-tier').textContent = tier ? `On track for: ${tier.label}` : '';
+  const tier = getCountupTier(timerSeconds);
+  document.getElementById('timer-tier').textContent = tier ? 'On track for: ' + tier.label : '';
 }
 
-// ─────────────────────────────────────────
-// TIMER HELPERS
-// ─────────────────────────────────────────
 function updateTimerDisplay() {
-  const el = document.getElementById('timer-display');
-  el.textContent = formatTime(timerSeconds);
-  el.classList.toggle('urgent', game.timerType === 'countdown' && timerSeconds <= 10);
+  const el = document.getElementById('timer-display');
+  el.textContent = formatTime(timerSeconds);
+  el.classList.toggle('urgent', game.timerType === 'countdown' && timerSeconds <= 10);
 }
+
 function formatTime(secs) {
-  return `${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`;
+  return Math.floor(secs/60) + ':' + String(secs%60).padStart(2,'0');
 }
+
 function clearTimerInterval() {
-  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
 // ─────────────────────────────────────────
-// AWARD UI  (ticket buttons OR free entry)
+// AWARD UI
 // ─────────────────────────────────────────
 function showAwardUI() {
-  if (game.freeEntry) {
-    document.getElementById('free-entry-input').value = '';
-    document.getElementById('free-entry-section').classList.remove('hidden');
-    document.getElementById('free-entry-input').focus();
-  } else {
-    document.getElementById('ticket-section').classList.remove('hidden');
-    highlightSelectedTicket();
-  }
+  if (game.freeEntry) {
+    document.getElementById('free-entry-input').value = '';
+    document.getElementById('free-entry-section').classList.remove('hidden');
+    document.getElementById('free-entry-input').focus();
+  } else {
+    document.getElementById('ticket-section').classList.remove('hidden');
+    highlightSelectedTicket();
+  }
 }
 
 function buildTicketGrid() {
-  if (!game.ticketOptions) return;
-  const grid = document.getElementById('ticket-grid');
-  grid.innerHTML = '';
-  game.ticketOptions.forEach(n => {
-    const btn = document.createElement('button');
-    btn.className = 'ticket-btn';
-    btn.textContent = n;
-    btn.dataset.val = n;
-    btn.onclick = () => { selectedTickets = n; highlightSelectedTicket(); };
-    grid.appendChild(btn);
-  });
+  const grid = document.getElementById('ticket-grid');
+  grid.innerHTML = '';
+  game.ticketOptions.forEach(n => {
+    const btn = document.createElement('button');
+    btn.className    = 'ticket-btn';
+    btn.textContent  = n;
+    btn.dataset.val  = n;
+    btn.onclick      = () => { selectedTickets = n; highlightSelectedTicket(); };
+    grid.appendChild(btn);
+  });
 }
 
 function highlightSelectedTicket() {
-  document.querySelectorAll('.ticket-btn').forEach(btn => {
-    btn.classList.toggle('selected', parseInt(btn.dataset.val) === selectedTickets);
-  });
+  document.querySelectorAll('.ticket-btn').forEach(btn => {
+    btn.classList.toggle('selected', parseInt(btn.dataset.val) === selectedTickets);
+  });
 }
 
 function confirmTickets() {
-  if (!pendingCardId) { alert('No card scanned yet.'); return; }
-  document.getElementById('ticket-section').classList.add('hidden');
-  sendTickets(pendingCardId, selectedTickets);
+  if (!activeCardId) { alert('No card detected yet.'); return; }
+  document.getElementById('ticket-section').classList.add('hidden');
+  sendTickets(activeCardId, selectedTickets);
 }
 
 function confirmFreeEntry() {
-  if (!pendingCardId) { alert('No card scanned yet.'); return; }
-  const val = parseInt(document.getElementById('free-entry-input').value);
-  if (!val || val < 1) { alert('Please enter a number of tickets.'); return; }
-  document.getElementById('free-entry-section').classList.add('hidden');
-  sendTickets(pendingCardId, val);
+  const val = parseInt(document.getElementById('free-entry-input').value);
+  if (!val || val < 1) { alert('Please enter a number of tickets.'); return; }
+  document.getElementById('free-entry-section').classList.add('hidden');
+  sendTickets(activeCardId, val);
 }
 
 // ─────────────────────────────────────────
 // FLAT AWARD (group games)
 // ─────────────────────────────────────────
 function buildFlatPanel() {
-  document.getElementById('flat-section').innerHTML = `
-    <div class="flat-award">
-      <div class="flat-amount">${game.flatTickets} 🎟️</div>
-      <div class="flat-sublabel">${game.flatLabel}</div>
-    </div>
-    ${game.winnerBonus ? `
-    <button class="btn btn-orange" onclick="awardWinnerBonus()" style="margin-top:10px;">
-      🏆 Award Winner Bonus (+${game.winnerBonusTickets} tickets)
-    </button>` : ''}
-  `;
+  document.getElementById('flat-section').innerHTML = `
+    <div class="flat-award">
+      <div class="flat-amount">${game.flatTickets} 🎟️</div>
+      <div class="flat-sublabel">${game.flatLabel}</div>
+    </div>
+    <button class="btn btn-primary" onclick="awardFlat(false)" style="margin-bottom:10px;">
+      ✅ Award ${game.flatTickets} Ticket${game.flatTickets>1?'s':''}
+    </button>
+    ${game.winnerBonus ? `
+    <button class="btn btn-orange" onclick="awardFlat(true)">
+      🏆 Winner Bonus (+${game.winnerBonusTickets} tickets)
+    </button>` : ''}
+  `;
 }
 
-async function awardFlatTickets(cardId, amount, isBonus) {
-  setScanState('armed', '⏳', 'Adding tickets…', '');
-  try {
-    const params = new URLSearchParams({ action:'addTickets', cardId, tickets: amount, station: game.label });
-    const res  = await fetch(`${SCRIPT_URL}?${params}`);
-    const data = await res.json();
-    if (data.success) {
-      const label = isBonus ? `🏆 Bonus! +${amount}` : `+${amount} ticket${amount>1?'s':''}!`;
-      setScanState('success', '🎉', label, `${data.name} now has ${data.total} tickets`);
-      addToLog(data.name, amount, data.total);
-      setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 2500);
-    } else {
-      setScanState('error', '❓', 'Card not found', data.message || 'Not registered.');
-      setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 3000);
-    }
-  } catch {
-    setScanState('error', '📡', 'Network error', 'Check connection.');
-    setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 3000);
-  }
-}
-
-function awardWinnerBonus() {
-  setScanState('armed', '📲', "Scan winner's card…", 'Hold card to top of phone');
-  document.getElementById('primary-btn').disabled = true;
-  if (!('NDEFReader' in window)) {
-    setScanState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen.');
-    document.getElementById('primary-btn').disabled = false;
-    return;
-  }
-  const ndef = new NDEFReader();
-  ndef.scan().then(() => {
-    ndef.onreading = (event) => {
-      ndef.onreading = null;
-      document.getElementById('primary-btn').disabled = false;
-      awardFlatTickets(event.serialNumber, game.winnerBonusTickets, true);
-    };
-  }).catch(err => {
-    setScanState('error', '❌', 'NFC Error', err.message);
-    document.getElementById('primary-btn').disabled = false;
-  });
+function awardFlat(isBonus) {
+  const amount = isBonus ? game.winnerBonusTickets : game.flatTickets;
+  document.getElementById('flat-section').classList.add('hidden');
+  sendTickets(activeCardId, amount);
 }
 
 // ─────────────────────────────────────────
-// SEND TICKETS TO SHEET
+// SEND TICKETS
 // ─────────────────────────────────────────
 async function sendTickets(cardId, tickets) {
-  setScanState('armed', '⏳', 'Adding tickets…', '');
-  try {
-    const params = new URLSearchParams({ action:'addTickets', cardId, tickets, station: game.label });
-    const res  = await fetch(`${SCRIPT_URL}?${params}`);
-    const data = await res.json();
-    if (data.success) {
-      setScanState('success', '🎉', `+${tickets} ticket${tickets>1?'s':''}!`, `${data.name} now has ${data.total} tickets`);
-      addToLog(data.name, tickets, data.total);
-      pendingCardId = null;
-      document.getElementById('timer-display').classList.add('hidden');
-      document.getElementById('timer-tier').classList.add('hidden');
-      setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 2500);
-    } else {
-      setScanState('error', '❓', 'Card not found', data.message || 'Not registered.');
-      setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 3000);
-    }
-  } catch {
-    setScanState('error', '📡', 'Network error', 'Check connection.');
-    setTimeout(() => setScanState('', '🎴', 'Ready', 'Tap Scan Card to begin'), 3000);
-  }
+  try {
+    const params = new URLSearchParams({ action:'addTickets', cardId, tickets, station: game.label });
+    const res    = await fetch(`${SCRIPT_URL}?${params}`);
+    const data   = await res.json();
+
+    if (data.success) {
+      showSuccess(`+${tickets} ticket${tickets>1?'s':''}!`, `${data.name} now has ${data.total} 🎟️`);
+      addToLog(data.name, tickets, data.total);
+    } else {
+      showSuccess('❌ ' + (data.message || 'Something went wrong'), '');
+    }
+  } catch {
+    showSuccess('📡 Network error', 'Check connection and try again.');
+  }
+}
+
+function showSuccess(label, sub) {
+  document.getElementById('sf-label').textContent = label;
+  document.getElementById('sf-sub').textContent   = sub;
+  document.getElementById('success-flash').classList.remove('hidden');
+  document.getElementById('reset-btn').classList.remove('hidden');
 }
 
 // ─────────────────────────────────────────
-// SCAN ZONE STATE
+// REGISTER TAB
 // ─────────────────────────────────────────
-function setScanState(state, emoji, label, sub) {
-  document.getElementById('scan-zone').className = 'scan-zone' + (state ? ' ' + state : '');
-  document.getElementById('scan-emoji').textContent = emoji;
-  document.getElementById('scan-label').textContent = label;
-  document.getElementById('scan-sub').textContent   = sub;
+function setRegState(state, emoji, label, sub) {
+  const zone = document.getElementById('reg-zone');
+  zone.className = 'reg-zone' + (state ? ' ' + state : '');
+  document.getElementById('reg-emoji').textContent = emoji;
+  document.getElementById('reg-label').textContent = label;
+  document.getElementById('reg-sub').textContent   = sub;
+}
+
+async function confirmRegister() {
+  const name = document.getElementById('reg-name-input').value.trim().toLowerCase();
+  if (!name) { alert("Please enter the child's name."); return; }
+
+  setRegState('', '⏳', 'Registering…', name);
+
+  try {
+    // First check if already exists
+    const lookupParams = new URLSearchParams({ action:'lookupCard', cardId: name });
+    const lookupRes    = await fetch(`${SCRIPT_URL}?${lookupParams}`);
+    const lookupData   = await lookupRes.json();
+
+    if (lookupData.found) {
+      setRegState('found', '✅', 'Already registered!', `"${name}" already belongs to ${lookupData.name}`);
+      return;
+    }
+
+    // Register with name as both cardId and display name
+    const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+    const regParams   = new URLSearchParams({ action:'registerCard', cardId: name, name: displayName });
+    const regRes      = await fetch(`${SCRIPT_URL}?${regParams}`);
+    const regData     = await regRes.json();
+
+    if (regData.success) {
+      setRegState('success', '🎉', `${displayName} registered!`,
+        'URL to write to card: ' + SCRIPT_URL + '?action=checkin&cardId=' + name);
+      document.getElementById('reg-name-input').value = '';
+    } else {
+      setRegState('error', '❌', 'Registration failed', regData.message || 'Try again.');
+    }
+  } catch {
+    setRegState('error', '📡', 'Network error', 'Check connection.');
+  }
 }
 
 // ─────────────────────────────────────────
 // LOG
 // ─────────────────────────────────────────
 function addToLog(name, tickets, total) {
-  const time = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-  scanLog.unshift({ name, tickets, total, time });
-  if (scanLog.length > 20) scanLog.pop();
-  renderLog();
-}
-function renderLog() {
-  const list = document.getElementById('log-list');
-  list.innerHTML = scanLog.length
-    ? scanLog.map(e => `<li class="log-item"><span>${e.time} · ${e.name}</span><span class="log-tickets">+${e.tickets} (${e.total} total)</span></li>`).join('')
-    : '<li class="log-item" style="color:#555;">No scans yet.</li>';
+  const time = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  scanLog.unshift({ name, tickets, total, time });
+  if (scanLog.length > 20) scanLog.pop();
+  const list = document.getElementById('log-list');
+  list.innerHTML = scanLog.map(e =>
+    `<li class="log-item">
+      <span>${e.time} · ${e.name}</span>
+      <span class="log-tickets">+${e.tickets} (${e.total} total)</span>
+    </li>`).join('');
 }
 
 // ─────────────────────────────────────────
 // TABS
 // ─────────────────────────────────────────
 function switchTab(tab) {
-  ['scan','reg','log'].forEach(t => {
-    document.getElementById(`tab-${t}`).classList.toggle('hidden', tab !== t);
-  });
-  ['scan','reg','log'].forEach(t => {
-    const btn = document.getElementById(`tab-btn-${t}`);
-    if (btn) btn.classList.toggle('active', tab === t);
-  });
-  if (tab === 'reg') resetRegPanel();
+  ['scan','reg','log'].forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('hidden', tab !== t);
+    const btn = document.getElementById('tab-btn-' + t);
+    if (btn) btn.classList.toggle('active', tab === t);
+  });
 }
 
-// ─────────────────────────────────────────
-// CARD REGISTRATION
-// ─────────────────────────────────────────
-let pendingRegCardId = null;
-
-function setRegState(state, emoji, label, sub) {
-  const zone = document.getElementById('reg-scan-zone');
-  zone.className = 'scan-zone' + (state ? ' ' + state : '');
-  document.getElementById('reg-emoji').textContent = emoji;
-  document.getElementById('reg-label').textContent = label;
-  document.getElementById('reg-sub').textContent   = sub;
-}
-
-function resetRegPanel() {
-  pendingRegCardId = null;
-  document.getElementById('reg-name-section').classList.add('hidden');
-  document.getElementById('reg-name-input').value = '';
-  document.getElementById('reg-scan-btn').disabled = false;
-  setRegState('', '🎴', 'Ready to register', 'Tap the button below and hold a card to the phone');
-}
-
-async function startRegScan() {
-  document.getElementById('reg-scan-btn').disabled = true;
-  document.getElementById('reg-name-section').classList.add('hidden');
-
-  if (!('NDEFReader' in window)) {
-    setRegState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen (not a browser tab).');
-    document.getElementById('reg-scan-btn').disabled = false;
-    return;
-  }
-
-  setRegState('armed', '📲', 'Hold card to phone…', 'Top edge of phone, near the camera');
-
-  try {
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    ndef.onreadingerror = () => {
-      setRegState('error', '❌', 'Read error', 'Try again');
-      document.getElementById('reg-scan-btn').disabled = false;
-    };
-    ndef.onreading = async (event) => {
-      ndef.onreading = null;
-      await handleRegCardScanned(event.serialNumber || 'unknown-' + Date.now());
-    };
-  } catch (err) {
-    setRegState('error', '❌', 'NFC Error', err.message || 'Could not start NFC.');
-    document.getElementById('reg-scan-btn').disabled = false;
-  }
-}
-
-async function handleRegCardScanned(cardId) {
-  setRegState('armed', '⏳', 'Checking database…', cardId);
-  try {
-    const params = new URLSearchParams({ action: 'lookupCard', cardId });
-    const res  = await fetch(`${SCRIPT_URL}?${params}`);
-    const data = await res.json();
-
-    if (data.found) {
-      // Card already registered
-      setRegState('found', '✅', `Already registered!`, `This card belongs to ${data.name}`);
-      document.getElementById('reg-scan-btn').disabled = false;
-    } else {
-      // Unknown card — prompt for name
-      pendingRegCardId = cardId;
-      setRegState('unknown', '❓', 'Card not registered', `ID: ${cardId}`);
-      document.getElementById('reg-name-section').classList.remove('hidden');
-      document.getElementById('reg-name-input').focus();
-      document.getElementById('reg-scan-btn').disabled = false;
-    }
-  } catch {
-    setRegState('error', '📡', 'Network error', 'Check connection and try again.');
-    document.getElementById('reg-scan-btn').disabled = false;
-  }
-}
-
-async function confirmRegister() {
-  const name = document.getElementById('reg-name-input').value.trim();
-  if (!name) { alert('Please enter the child\'s name.'); return; }
-  if (!pendingRegCardId) { alert('No card scanned. Please scan again.'); return; }
-
-  setRegState('armed', '⏳', 'Registering…', name);
-  document.getElementById('reg-name-section').classList.add('hidden');
-
-  try {
-    const params = new URLSearchParams({ action: 'registerCard', cardId: pendingRegCardId, name });
-    const res  = await fetch(`${SCRIPT_URL}?${params}`);
-    const data = await res.json();
-
-    if (data.success) {
-      setRegState('success', '🎉', `${name} registered!`, `Card ID: ${pendingRegCardId}`);
-      pendingRegCardId = null;
-      document.getElementById('reg-scan-btn').disabled = false;
-    } else {
-      setRegState('error', '❌', 'Registration failed', data.message || 'Try again.');
-      document.getElementById('reg-scan-btn').disabled = false;
-    }
-  } catch {
-    setRegState('error', '📡', 'Network error', 'Check connection and try again.');
-    document.getElementById('reg-scan-btn').disabled = false;
-  }
-}
 function switchPrizeTab(tab) {
-  document.getElementById('prize-tab-totals').classList.toggle('hidden', tab !== 'totals');
-  document.getElementById('prize-tab-spend').classList.toggle('hidden',  tab !== 'spend');
-  document.querySelectorAll('#prize-screen .tab').forEach((t,i) => {
-    t.classList.toggle('active', ['totals','spend','setup'][i] === tab);
-  });
+  document.getElementById('prize-tab-totals').classList.toggle('hidden', tab !== 'totals');
+  document.getElementById('prize-tab-spend').classList.toggle('hidden',  tab !== 'spend');
+  document.querySelectorAll('#prize-screen .tab').forEach((t,i) => {
+    t.classList.toggle('active', ['totals','spend','setup'][i] === tab);
+  });
 }
 
 // ─────────────────────────────────────────
 // PING
 // ─────────────────────────────────────────
 async function pingScript() {
-  const badge = document.getElementById('script-status-badge');
-  badge.textContent = 'checking…';
-  badge.className = 'script-status';
-  try {
-    const res  = await fetch(`${SCRIPT_URL}?action=ping`);
-    const data = await res.json();
-    if (data.ok) { badge.textContent = '● connected'; badge.className = 'script-status ok'; }
-    else throw new Error();
-  } catch {
-    badge.textContent = '● offline';
-    badge.className = 'script-status err';
-  }
+  const badge = document.getElementById('script-status-badge');
+  badge.textContent = 'checking…'; badge.className = 'script-status';
+  try {
+    const res  = await fetch(`${SCRIPT_URL}?action=ping`);
+    const data = await res.json();
+    if (data.ok) { badge.textContent = '● connected'; badge.className = 'script-status ok'; }
+    else throw new Error();
+  } catch {
+    badge.textContent = '● offline'; badge.className = 'script-status err';
+  }
 }
 
 // ─────────────────────────────────────────
 // PRIZE COUNTER
 // ─────────────────────────────────────────
 async function loadTotals() {
-  document.getElementById('kids-list').innerHTML  = '<div style="text-align:center;color:#555;padding:20px;">Loading…</div>';
-  document.getElementById('spend-list').innerHTML = '<div style="text-align:center;color:#555;padding:20px;">Loading…</div>';
-  try {
-    const res  = await fetch(`${SCRIPT_URL}?action=getTotals`);
-    const data = await res.json();
-    if (!data.kids) throw new Error();
-    const sorted = [...data.kids].sort((a,b) => b.tickets - a.tickets);
-    document.getElementById('kids-list').innerHTML = sorted.map((kid,i) => `
-      <div class="kid-card">
-        <div class="kid-rank">${i+1}</div>
-        <div class="kid-name">${kid.name}</div>
-        <div>
-          <div class="kid-tickets">${kid.tickets}</div>
-          <div class="kid-ticket-label">tickets</div>
-        </div>
-      </div>`).join('');
-    document.getElementById('spend-list').innerHTML = sorted.map(kid => `
-      <div class="kid-card" style="flex-direction:column;align-items:stretch;gap:8px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div class="kid-name">${kid.name}</div>
-          <div><span class="kid-tickets">${kid.tickets}</span> <span class="kid-ticket-label">tickets</span></div>
-        </div>
-        <div class="spend-row">
-          <input class="spend-input" type="number" min="1" placeholder="amt" id="spend-${kid.cardId}" />
-          <button class="spend-btn" onclick="spendTickets('${kid.cardId}','${kid.name}')">Spend</button>
-        </div>
-      </div>`).join('');
-    document.getElementById('last-refresh-label').textContent =
-      `Last updated: ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;
-  } catch {
-    document.getElementById('kids-list').innerHTML =
-      '<div style="text-align:center;color:#ff6b6b;padding:20px;">Could not load. Check your connection.</div>';
-  }
+  ['kids-list','spend-list'].forEach(id => {
+    document.getElementById(id).innerHTML = '<div style="text-align:center;color:#555;padding:20px;">Loading…</div>';
+  });
+  try {
+    const res    = await fetch(`${SCRIPT_URL}?action=getTotals`);
+    const data   = await res.json();
+    if (!data.kids) throw new Error();
+    const sorted = [...data.kids].sort((a,b) => b.tickets - a.tickets);
+
+    document.getElementById('kids-list').innerHTML = sorted.map((kid,i) => `
+      <div class="kid-card">
+        <div class="kid-rank">${i+1}</div>
+        <div class="kid-name">${kid.name}</div>
+        <div>
+          <div class="kid-tickets">${kid.tickets}</div>
+          <div class="kid-ticket-label">tickets</div>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('spend-list').innerHTML = sorted.map(kid => `
+      <div class="kid-card" style="flex-direction:column;align-items:stretch;gap:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="kid-name">${kid.name}</div>
+          <div><span class="kid-tickets">${kid.tickets}</span> <span class="kid-ticket-label">tickets</span></div>
+        </div>
+        <div class="spend-row">
+          <input class="spend-input" type="number" min="1" placeholder="amt" id="spend-${kid.cardId}" />
+          <button class="spend-btn" onclick="spendTickets('${kid.cardId}','${kid.name}')">Spend</button>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('last-refresh-label').textContent =
+      'Last updated: ' + new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  } catch {
+    document.getElementById('kids-list').innerHTML =
+      '<div style="text-align:center;color:#ff6b6b;padding:20px;">Could not load. Check connection.</div>';
+  }
 }
 
 async function spendTickets(cardId, name) {
-  const input  = document.getElementById(`spend-${cardId}`);
-  const amount = parseInt(input.value);
-  if (!amount || amount < 1) { alert('Enter a valid amount.'); return; }
-  try {
-    const params = new URLSearchParams({ action:'spendTickets', cardId, tickets: amount });
-    const res  = await fetch(`${SCRIPT_URL}?${params}`);
-    const data = await res.json();
-    if (data.success) {
-      alert(`✅ ${name} spent ${amount} tickets. New total: ${data.total}`);
-      input.value = '';
-      loadTotals();
-    } else {
-      alert(data.message || 'Something went wrong.');
-    }
-  } catch {
-    alert('Network error. Check connection.');
-  }
+  const input  = document.getElementById('spend-' + cardId);
+  const amount = parseInt(input.value);
+  if (!amount || amount < 1) { alert('Enter a valid amount.'); return; }
+  try {
+    const params = new URLSearchParams({ action:'spendTickets', cardId, tickets: amount });
+    const res    = await fetch(`${SCRIPT_URL}?${params}`);
+    const data   = await res.json();
+    if (data.success) {
+      alert('✅ ' + name + ' spent ' + amount + ' tickets. New total: ' + data.total);
+      input.value = '';
+      loadTotals();
+    } else {
+      alert(data.message || 'Something went wrong.');
+    }
+  } catch {
+    alert('Network error. Check connection.');
+  }
 }
 </script>
 </body>
