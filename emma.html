@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Loading…</title>
+<style>
+  body {
+    background: #1E1B2E; color: #F0EEFF;
+    font-family: sans-serif;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh; margin: 0;
+    font-size: 1.3rem;
+  }
+</style>
+</head>
+<body>
+<p>🎴 Loading Emma's card…</p>
+<script>
+  // Store this child's identity then open the main app
+  localStorage.setItem('pendingCard', 'emma');
+  localStorage.setItem('pendingName', 'Emma');
+  window.location.replace('./index.html');
+</script>
+</body>
+</html>
