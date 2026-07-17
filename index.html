@@ -245,6 +245,14 @@
     font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
   }
 
+  /* ── Register tab ── */
+  #reg-scan-zone { margin-bottom: 14px; }
+  #reg-scan-zone.armed   { border-color: var(--teal); }
+  #reg-scan-zone.found   { border-color: var(--yellow); }
+  #reg-scan-zone.unknown { border-color: var(--purple); }
+  #reg-scan-zone.success { border-color: var(--teal); }
+  #reg-scan-zone.error   { border-color: var(--pink); }
+
   .hidden { display: none !important; }
 </style>
 </head>
@@ -288,6 +296,7 @@
 <div id="station-screen">
   <div class="tab-bar">
     <button class="tab active" id="tab-btn-scan" onclick="switchTab('scan')">🎮 Scan</button>
+    <button class="tab"        id="tab-btn-reg"  onclick="switchTab('reg')">➕ Register</button>
     <button class="tab"        id="tab-btn-log"  onclick="switchTab('log')">📋 Log</button>
     <button class="tab"                           onclick="goSetup()">⚙️ Setup</button>
   </div>
@@ -332,6 +341,27 @@
 
     <!-- Flat-award panel (group games) -->
     <div id="flat-section" class="hidden"></div>
+  </div>
+
+  <!-- REGISTER TAB -->
+  <div id="tab-reg" class="hidden">
+    <div class="scan-zone" id="reg-scan-zone">
+      <span class="scan-emoji" id="reg-emoji">🎴</span>
+      <div class="scan-label" id="reg-label">Ready to register</div>
+      <div class="scan-sub"   id="reg-sub">Tap the button below and hold a card to the phone</div>
+    </div>
+
+    <button class="btn btn-yellow" id="reg-scan-btn" onclick="startRegScan()" style="margin-bottom:12px;">
+      📲 Scan Card to Register
+    </button>
+
+    <!-- shown after scan if card is unregistered -->
+    <div id="reg-name-section" class="hidden">
+      <label for="reg-name-input">Child's name</label>
+      <input type="text" id="reg-name-input" placeholder="e.g. Emma" autocomplete="off" />
+      <button class="btn btn-primary" onclick="confirmRegister()">✅ Register Card</button>
+      <button class="btn btn-ghost"   onclick="resetRegPanel()">✕ Cancel</button>
+    </div>
   </div>
 
   <!-- LOG TAB -->
@@ -818,10 +848,117 @@ function renderLog() {
 // TABS
 // ─────────────────────────────────────────
 function switchTab(tab) {
-  document.getElementById('tab-scan').classList.toggle('hidden', tab !== 'scan');
-  document.getElementById('tab-log').classList.toggle('hidden',  tab !== 'log');
-  document.getElementById('tab-btn-scan').classList.toggle('active', tab === 'scan');
-  document.getElementById('tab-btn-log').classList.toggle('active',  tab === 'log');
+  ['scan','reg','log'].forEach(t => {
+    document.getElementById(`tab-${t}`).classList.toggle('hidden', tab !== t);
+  });
+  ['scan','reg','log'].forEach(t => {
+    const btn = document.getElementById(`tab-btn-${t}`);
+    if (btn) btn.classList.toggle('active', tab === t);
+  });
+  if (tab === 'reg') resetRegPanel();
+}
+
+// ─────────────────────────────────────────
+// CARD REGISTRATION
+// ─────────────────────────────────────────
+let pendingRegCardId = null;
+
+function setRegState(state, emoji, label, sub) {
+  const zone = document.getElementById('reg-scan-zone');
+  zone.className = 'scan-zone' + (state ? ' ' + state : '');
+  document.getElementById('reg-emoji').textContent = emoji;
+  document.getElementById('reg-label').textContent = label;
+  document.getElementById('reg-sub').textContent   = sub;
+}
+
+function resetRegPanel() {
+  pendingRegCardId = null;
+  document.getElementById('reg-name-section').classList.add('hidden');
+  document.getElementById('reg-name-input').value = '';
+  document.getElementById('reg-scan-btn').disabled = false;
+  setRegState('', '🎴', 'Ready to register', 'Tap the button below and hold a card to the phone');
+}
+
+async function startRegScan() {
+  document.getElementById('reg-scan-btn').disabled = true;
+  document.getElementById('reg-name-section').classList.add('hidden');
+
+  if (!('NDEFReader' in window)) {
+    // Test fallback
+    const fakeId = 'TEST-REG-' + Math.floor(Math.random() * 9000 + 1000);
+    await handleRegCardScanned(fakeId);
+    return;
+  }
+
+  setRegState('armed', '📲', 'Hold card to phone…', 'Top edge of phone, near the camera');
+
+  try {
+    const ndef = new NDEFReader();
+    await ndef.scan();
+    ndef.onreadingerror = () => {
+      setRegState('error', '❌', 'Read error', 'Try again');
+      document.getElementById('reg-scan-btn').disabled = false;
+    };
+    ndef.onreading = async (event) => {
+      ndef.onreading = null;
+      await handleRegCardScanned(event.serialNumber || 'unknown-' + Date.now());
+    };
+  } catch (err) {
+    setRegState('error', '❌', 'NFC Error', err.message || 'Could not start NFC.');
+    document.getElementById('reg-scan-btn').disabled = false;
+  }
+}
+
+async function handleRegCardScanned(cardId) {
+  setRegState('armed', '⏳', 'Checking database…', cardId);
+  try {
+    const params = new URLSearchParams({ action: 'lookupCard', cardId });
+    const res  = await fetch(`${SCRIPT_URL}?${params}`);
+    const data = await res.json();
+
+    if (data.found) {
+      // Card already registered
+      setRegState('found', '✅', `Already registered!`, `This card belongs to ${data.name}`);
+      document.getElementById('reg-scan-btn').disabled = false;
+    } else {
+      // Unknown card — prompt for name
+      pendingRegCardId = cardId;
+      setRegState('unknown', '❓', 'Card not registered', `ID: ${cardId}`);
+      document.getElementById('reg-name-section').classList.remove('hidden');
+      document.getElementById('reg-name-input').focus();
+      document.getElementById('reg-scan-btn').disabled = false;
+    }
+  } catch {
+    setRegState('error', '📡', 'Network error', 'Check connection and try again.');
+    document.getElementById('reg-scan-btn').disabled = false;
+  }
+}
+
+async function confirmRegister() {
+  const name = document.getElementById('reg-name-input').value.trim();
+  if (!name) { alert('Please enter the child\'s name.'); return; }
+  if (!pendingRegCardId) { alert('No card scanned. Please scan again.'); return; }
+
+  setRegState('armed', '⏳', 'Registering…', name);
+  document.getElementById('reg-name-section').classList.add('hidden');
+
+  try {
+    const params = new URLSearchParams({ action: 'registerCard', cardId: pendingRegCardId, name });
+    const res  = await fetch(`${SCRIPT_URL}?${params}`);
+    const data = await res.json();
+
+    if (data.success) {
+      setRegState('success', '🎉', `${name} registered!`, `Card ID: ${pendingRegCardId}`);
+      pendingRegCardId = null;
+      document.getElementById('reg-scan-btn').disabled = false;
+    } else {
+      setRegState('error', '❌', 'Registration failed', data.message || 'Try again.');
+      document.getElementById('reg-scan-btn').disabled = false;
+    }
+  } catch {
+    setRegState('error', '📡', 'Network error', 'Check connection and try again.');
+    document.getElementById('reg-scan-btn').disabled = false;
+  }
 }
 function switchPrizeTab(tab) {
   document.getElementById('prize-tab-totals').classList.toggle('hidden', tab !== 'totals');
