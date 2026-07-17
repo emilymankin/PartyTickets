@@ -400,7 +400,7 @@
 // ─────────────────────────────────────────
 // HARDCODED SCRIPT URL
 // ─────────────────────────────────────────
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiXySKzS5QJZXCJYIgg0jTvRiUkwOr8CCUwpSef1AYeV4hgmjm0Q4sw-XQ2TH0Fovg/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjOCUPXIC4UwG9cRhn7tqK8P69prukCQXqfIItU7-aRog97wjnnXTqz8BCq91up4dX/exec';
 
 // ─────────────────────────────────────────
 // GAME CONFIG
@@ -555,9 +555,7 @@ function primaryAction() { startScan(); }
 // ─────────────────────────────────────────
 async function startScan() {
   if (!('NDEFReader' in window)) {
-    // Fallback for testing outside https / unsupported browser
-    const fakeId = 'TEST-' + Math.floor(Math.random() * 9000 + 1000);
-    handleCardScanned(fakeId);
+    setScanState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen (not a browser tab).');
     return;
   }
 
@@ -606,6 +604,7 @@ function startCountdown() {
   const override = parseInt(document.getElementById('timer-override').value);
   timerSeconds = override > 0 ? override : game.defaultSecs;
   document.getElementById('timer-display').classList.remove('hidden');
+  document.getElementById('stop-btn').classList.remove('hidden');
   document.getElementById('primary-btn').disabled = true;
   setScanState('running', '⏳', 'Time remaining', '');
   updateTimerDisplay();
@@ -617,11 +616,15 @@ function startCountdown() {
 }
 
 function onCountdownComplete() {
+  document.getElementById('stop-btn').classList.add('hidden');
   setScanState('success', '🎉', "Time's up!", 'Enter or choose tickets and tap Award');
   document.getElementById('timer-display').classList.add('hidden');
   document.getElementById('primary-btn').disabled = false;
   showAwardUI();
 }
+
+// Allow attendant to stop countdown early
+function stopCountdown() { clearTimerInterval(); onCountdownComplete(); }
 
 // ─────────────────────────────────────────
 // COUNT-UP
@@ -775,8 +778,8 @@ function awardWinnerBonus() {
   setScanState('armed', '📲', "Scan winner's card…", 'Hold card to top of phone');
   document.getElementById('primary-btn').disabled = true;
   if (!('NDEFReader' in window)) {
+    setScanState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen.');
     document.getElementById('primary-btn').disabled = false;
-    awardFlatTickets('TEST-WIN', game.winnerBonusTickets, true);
     return;
   }
   const ndef = new NDEFReader();
@@ -884,9 +887,8 @@ async function startRegScan() {
   document.getElementById('reg-name-section').classList.add('hidden');
 
   if (!('NDEFReader' in window)) {
-    // Test fallback
-    const fakeId = 'TEST-REG-' + Math.floor(Math.random() * 9000 + 1000);
-    await handleRegCardScanned(fakeId);
+    setRegState('error', '❌', 'NFC not available', 'Open this page in Safari, from your Home Screen (not a browser tab).');
+    document.getElementById('reg-scan-btn').disabled = false;
     return;
   }
 
