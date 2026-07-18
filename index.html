@@ -558,7 +558,7 @@ async function loadPlayers() {
   try {
     const res  = await fetch(`${SCRIPT_URL}?action=getTotals`);
     const data = await res.json();
-    allPlayers = (data.kids || []).sort((a,b) => a.name.localeCompare(b.name));
+    allPlayers = data.kids || [];
     renderNameList(allPlayers);
   } catch {
     document.getElementById('name-list').innerHTML =
@@ -1005,7 +1005,7 @@ async function loadTotals() {
     const res    = await fetch(`${SCRIPT_URL}?action=getTotals`);
     const data   = await res.json();
     if (!data.kids) throw new Error();
-    const sorted = [...data.kids].sort((a,b) => b.tickets - a.tickets);
+    const sorted = data.kids || [];
 
     document.getElementById('kids-list').innerHTML = sorted.map((kid,i) => `
       <div class="kid-card">
