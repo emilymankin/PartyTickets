@@ -314,6 +314,7 @@
   </select>
 
   <button class="btn btn-primary" onclick="startStation()">Open Station</button>
+  <button class="btn btn-ghost"   onclick="reloadPlayers()">↻ Refresh Player List</button>
   <button class="btn btn-ghost"   onclick="openPrizeCounter()">Open as Prize Counter</button>
 </div>
 
@@ -565,6 +566,11 @@ async function loadPlayers() {
   }
 }
 
+async function reloadPlayers() {
+  await loadPlayers();
+  alert('✅ Player list refreshed!');
+}
+
 function renderNameList(players) {
   if (!players.length) {
     document.getElementById('name-list').innerHTML =
@@ -705,11 +711,11 @@ function resetPlayTab() {
   if (document.getElementById('free-entry-input'))
     document.getElementById('free-entry-input').value = '';
 
-  // Show name picker with refreshed totals
+  // Show name picker (don't reload — list stays cached)
   document.getElementById('add-player-section').classList.add('hidden');
   document.getElementById('name-picker-section').classList.remove('hidden');
   document.getElementById('name-search').value = '';
-  loadPlayers();
+  renderNameList(allPlayers);
 }
 
 // ─────────────────────────────────────────
@@ -1053,4 +1059,3 @@ async function spendTickets(cardId, name) {
 </script>
 </body>
 </html>
-
