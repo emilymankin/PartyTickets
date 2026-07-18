@@ -449,7 +449,7 @@
 // ─────────────────────────────────────────
 // CONFIG — update SCRIPT_URL if redeployed
 // ─────────────────────────────────────────
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAZ8JSpG23pvB25hC-cxi9-AnSF1xmYDXcTuv7DlftAm8w0yI6vTqrwhI6kPpS2jcD/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2CwJ9rFXIp9xkAvZtPxOIf2BZxseIoDAjFJ2mvKbAP7miObyGuVxFOyYNJ-WVWvOh/exec';
 
 // ─────────────────────────────────────────
 // GAME CONFIG
@@ -503,43 +503,52 @@ let activeCardName  = null;
 // ON LOAD — check for ?card= in URL
 // ─────────────────────────────────────────
 window.addEventListener('load', () => {
-  // Read card ID from hash e.g. #card=emma
+  // Register service worker to keep card-tap URLs inside the home screen app
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/PartyTickets/sw.js').catch(() => {});
+
+    // Listen for messages from the service worker carrying the card hash
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data && event.data.card) {
+        handleIncomingCard(event.data.card, event.data.name || event.data.card);
+      }
+    });
+  }
+
+  // Also read hash directly in case SW isn't active yet on first launch
   const hash   = window.location.hash.replace('#', '');
   const params = new URLSearchParams(hash);
   const card   = params.get('card');
   const name   = params.get('name');
 
   if (card) {
-    // Card was tapped — clear hash immediately
     history.replaceState({}, '', window.location.pathname);
-
-    // Check if a game is already saved
-    const savedKey = localStorage.getItem('stationGame');
-    if (savedKey && GAMES[savedKey]) {
-      // Auto-launch directly into the game with this card
-      game = GAMES[savedKey];
-      document.getElementById('setup-screen').style.display   = 'none';
-      document.getElementById('station-screen').style.display = 'block';
-      document.getElementById('display-station-name').textContent = game.label;
-      const base = window.location.origin + window.location.pathname;
-      document.getElementById('guide-url-example').textContent = base + '#card=firstname';
-      initPlayTab();
-      pingScript();
-      // Slight delay to let DOM settle before triggering card
-      setTimeout(() => cardDetected(card, name || card), 100);
-    } else {
-      // No game saved yet — store card and show setup so attendant picks game
-      sessionStorage.setItem('pendingCard', card);
-      sessionStorage.setItem('pendingName', name || card);
-    }
+    handleIncomingCard(card, name || card);
   } else {
-    // Normal load — pre-fill saved game in dropdown if available
     const savedKey = localStorage.getItem('stationGame');
     if (savedKey) {
       document.getElementById('station-select').value = savedKey;
     }
   }
 });
+
+function handleIncomingCard(card, name) {
+  const savedKey = localStorage.getItem('stationGame');
+  if (savedKey && GAMES[savedKey]) {
+    game = GAMES[savedKey];
+    document.getElementById('setup-screen').style.display   = 'none';
+    document.getElementById('station-screen').style.display = 'block';
+    document.getElementById('display-station-name').textContent = game.label;
+    const base = window.location.origin + window.location.pathname;
+    document.getElementById('guide-url-example').textContent = base + '#card=firstname';
+    initPlayTab();
+    pingScript();
+    setTimeout(() => cardDetected(card, name), 100);
+  } else {
+    localStorage.setItem('pendingCard', card);
+    localStorage.setItem('pendingName', name);
+  }
+}
 
 // ─────────────────────────────────────────
 // SETUP
@@ -579,11 +588,11 @@ function goSetup() {
 // CARD DETECTION (URL param)
 // ─────────────────────────────────────────
 function checkPendingCard() {
-  const card = sessionStorage.getItem('pendingCard');
-  const name = sessionStorage.getItem('pendingName');
+  const card = localStorage.getItem('pendingCard');
+  const name = localStorage.getItem('pendingName');
   if (card) {
-    sessionStorage.removeItem('pendingCard');
-    sessionStorage.removeItem('pendingName');
+    localStorage.removeItem('pendingCard');
+    localStorage.removeItem('pendingName');
     cardDetected(card, name);
   }
 }
@@ -592,11 +601,11 @@ function checkPendingCard() {
 // (handles the case where a card is tapped while already on station screen)
 setInterval(() => {
   if (document.getElementById('station-screen').style.display !== 'block') return;
-  const card = sessionStorage.getItem('pendingCard');
-  const name = sessionStorage.getItem('pendingName');
+  const card = localStorage.getItem('pendingCard');
+  const name = localStorage.getItem('pendingName');
   if (card) {
-    sessionStorage.removeItem('pendingCard');
-    sessionStorage.removeItem('pendingName');
+    localStorage.removeItem('pendingCard');
+    localStorage.removeItem('pendingName');
     cardDetected(card, name);
   }
 }, 500);
